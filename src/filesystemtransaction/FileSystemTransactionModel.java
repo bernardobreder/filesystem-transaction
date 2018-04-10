@@ -2,7 +2,7 @@ package filesystemtransaction;
 
 import java.io.IOException;
 
-public interface FileSystemModel {
+public interface FileSystemTransactionModel {
 	
 	public void write(String path, byte[] bytes) throws IOException;
 

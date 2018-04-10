@@ -16,15 +16,15 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class FileSystem {
+public class FileSystemTransaction {
 	
-	protected final FileSystemModel model;
+	protected final FileSystemTransactionModel model;
 	
 	protected final Lock wlock;
 	
 	protected final Lock rlock;
 	
-	public FileSystem(FileSystemModel model) throws IOException {
+	public FileSystemTransaction(FileSystemTransactionModel model) throws IOException {
 		this.model = model;
 		if (model.existsTransaction()) {
 			new TransactionFile().restore();

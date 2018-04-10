@@ -12,17 +12,17 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import filesystemtransaction.FileSystem;
-import filesystemtransaction.FileSystemModel;
-import filesystemtransaction.FileSystem.ReaderTransactionFileSystem;
-import filesystemtransaction.FileSystem.WriteTransactionFileSystem;
+import filesystemtransaction.FileSystemTransaction;
+import filesystemtransaction.FileSystemTransactionModel;
+import filesystemtransaction.FileSystemTransaction.ReaderTransactionFileSystem;
+import filesystemtransaction.FileSystemTransaction.WriteTransactionFileSystem;
 
-public class FileSystemTest {
+public class FileSystemTransactionTest {
 	
 	@Test
 	public void test() throws IOException {
 		MemoryFileSystemModel model = new MemoryFileSystemModel();
-		FileSystem fs = new FileSystem(model);
+		FileSystemTransaction fs = new FileSystemTransaction(model);
 		try (WriteTransactionFileSystem write = fs.write()) {
 			write.write("a", BYTES_1);
 			write.write("b", BYTES_2);
@@ -60,7 +60,7 @@ public class FileSystemTest {
 			1
 	};
 	
-	private final class MemoryFileSystemModel implements FileSystemModel {
+	private final class MemoryFileSystemModel implements FileSystemTransactionModel {
 		
 		private byte[] transaction;
 		
