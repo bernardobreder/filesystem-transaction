@@ -10,8 +10,6 @@ try (WriteTransactionFileSystem write = fs.write()) {
     write.write("b", BYTES_2);
     write.write("c", BYTES_3);
 }
-assertEquals(3, model.bytes.size());
-assertNull(model.transaction);
 
 try (ReaderTransactionFileSystem read = fs.read()) {
     assertArrayEquals(BYTES_1, read.read("a"));
@@ -22,12 +20,14 @@ try (ReaderTransactionFileSystem read = fs.read()) {
     assertTrue(read.exists("c"));
     assertFalse(read.exists("d"));
 }
-assertEquals(3, model.bytes.size());
-assertNull(model.transaction);
 
 try (WriteTransactionFileSystem write = fs.write()) {
     write.delete("b");
 }
-assertEquals(2, model.bytes.size());
-assertNull(model.transaction);
+
+try (ReaderTransactionFileSystem read = fs.read()) {
+    assertTrue(read.exists("a"));
+    assertFalse(read.exists("b"));
+    assertTrue(read.exists("c"));
+}
 ```
