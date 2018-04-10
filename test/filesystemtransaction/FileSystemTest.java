@@ -1,4 +1,4 @@
-package company.model;
+package filesystemtransaction;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -12,8 +12,10 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import company.model.FileSystem.ReaderTransactionFileSystem;
-import company.model.FileSystem.WriteTransactionFileSystem;
+import filesystemtransaction.FileSystem;
+import filesystemtransaction.FileSystemModel;
+import filesystemtransaction.FileSystem.ReaderTransactionFileSystem;
+import filesystemtransaction.FileSystem.WriteTransactionFileSystem;
 
 public class FileSystemTest {
 	
