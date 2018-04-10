@@ -4,6 +4,11 @@ import java.io.IOException;
 
 public interface FileSystemTransactionModel {
 	
+	public default boolean validatePath(String path) {
+		if (path.contains("..")) { return false; }
+		return true;
+	}
+	
 	public void write(String path, byte[] bytes) throws IOException;
 
 	public byte[] read(String path) throws IOException;
